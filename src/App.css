@@ -1,0 +1,12 @@
+hr {
+  height: "5px";
+  width: "10px";
+  background-color: #0e0505;
+  color: black;
+}
+
+.line {
+  flex: 1;
+  height: "1px";
+  background-color: "black";
+}
