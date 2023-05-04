@@ -3,13 +3,10 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg"
+      className="navbar navbar-expand"
       style={{ background: "#f0f0f0", marginBottom: "1rem" }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          My App
-        </a>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">

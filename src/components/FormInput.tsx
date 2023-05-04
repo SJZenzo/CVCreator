@@ -9,7 +9,7 @@ interface Props {
 
 const TextInput = ({
   inputType,
-  className = "col",
+  className = "col-md mb-3",
   register,
   hint,
   type = "text",
@@ -17,12 +17,12 @@ const TextInput = ({
 }: Props) => {
   return (
     <div className={className}>
+      {hint}
       <input
-        {...register(inputType)}
+        {...register(inputType, { valueAsNumber: type === "number" })}
         id={inputType}
         type={type}
         className="form-control"
-        placeholder={hint}
         aria-label={hint}
       />
       {error && <p className="text-danger">{error}</p>}
