@@ -1,6 +1,6 @@
 export default {
   name: "sławomir Woryna",
-  function: "Frontend developer",
+  positon: "Frontend developer",
   phoneNumber: 536357781,
   email: "slawek.4363@gmail.com",
   linkedinProfile: "https://www.linkedin.com/in/sławomir-woryna-34a1791ba/",

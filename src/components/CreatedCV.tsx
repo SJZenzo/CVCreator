@@ -13,8 +13,8 @@ const CreatedCV = () => {
             lg: `"header header""aside main"`,
           }}
           templateColumns={{
-            lg: "500px 1fr",
             base: "1fr",
+            lg: "500px 1fr",
           }}
         >
           <GridItem area="header">

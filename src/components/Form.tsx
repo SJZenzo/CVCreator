@@ -1,13 +1,22 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
+import FormInput from "./FormInput";
+
+const zString = (message: String) => {
+  return z
+    .string()
+    .min(3, { message: message + " must be at least 3 charakters" });
+};
 
 const shema = z.object({
-  description: z
-    .string()
-    .min(3, { message: "Description must be at least 3 charakters" }),
-  amount: z.number({ invalid_type_error: "Amount field is required" }).min(18),
-  category: z.string().min(1, { message: "Category is required" }),
+  name: zString("Name"),
+  surname: zString("Surname"),
+  positon: zString("Posidion"),
+  phoneNumber: z.number(),
+  email: zString("Email"),
+  linkedin: zString("Linkedin link"),
+  city: zString("City name"),
 });
 
 type FormData = z.infer<typeof shema>;
@@ -24,52 +33,57 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-3">
-        <label htmlFor="description" className="form-label">
-          Description
-        </label>
-        <input
-          {...register("description")}
-          id="description "
-          type="text"
-          className="form-control"
+    <form onSubmit={handleSubmit(onSubmit)} className="m-3 form-floating">
+      <div className="row mb-3">
+        <FormInput
+          inputType="name"
+          error={errors.name?.message}
+          hint="Imie"
+          register={register}
         />
-        {errors.description && (
-          <p className="text-danger">{errors.description.message}</p>
-        )}
-      </div>
-      <div className="mb-3">
-        <label htmlFor="amount" className="form-label">
-          Amount
-        </label>
-        <input
-          {...register("amount", { valueAsNumber: true })}
-          id="amount "
+        <FormInput
+          inputType="surname"
+          error={errors.surname?.message}
+          hint="Nazwisko"
+          register={register}
+        />
+        <FormInput
+          inputType="positon"
+          error={errors.positon?.message}
+          hint="Stanowisko"
+          register={register}
+        />
+        <FormInput
+          inputType="phoneNumber"
+          error={errors.phoneNumber?.message}
+          hint="Numer telefonu"
+          register={register}
           type="number"
-          className="form-control"
         />
-        {errors.amount && (
-          <p className="text-danger">{errors.amount.message}</p>
-        )}
+      </div>
+      <div className="row mb-3">
+        <FormInput
+          inputType="email"
+          error={errors.email?.message}
+          hint="Email"
+          register={register}
+          type="email"
+        />
+        <FormInput
+          inputType="linkedin"
+          error={errors.linkedin?.message}
+          hint="Linkedin link"
+          register={register}
+          type="link"
+        />
+        <FormInput
+          inputType="city"
+          error={errors.city?.message}
+          hint="Miasto"
+          register={register}
+        />
       </div>
 
-      <div className="mb-3">
-        <div>
-          <label htmlFor="category" className="form-label">
-            Category
-          </label>
-        </div>
-        <select className="form-select" id="category" {...register("category")}>
-          <option></option>
-          <option value="Groceries">Groceries</option>
-          <option value="Utilites">Utilites</option>
-          <option value="Enterteinment">Enterteinment</option>
-        </select>
-        {errors.category && (
-          <p className="text-danger">{errors.category.message}</p>
-        )}
-      </div>
       <button className="btn btn-primary" type="submit">
         Submit
       </button>
