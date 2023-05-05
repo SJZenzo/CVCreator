@@ -20,21 +20,23 @@ const MainPanel = () => {
       <Heading fontSize={20} marginBottom={5}>
         WORK EXPIRIENCE
       </Heading>
-      {cvData.workExpirience.map((work) => (
-        <>
-          <Heading marginBottom={1} fontSize={18}>
-            {work.jobPosition}
-          </Heading>
-          <HStack marginBottom={1} spacing="auto">
-            <Text>{work.company}</Text>
-            <Text>
-              {work.startDateMonth}.{work.startDateYear}-{work.endDateMonth}.
-              {work.endDateYear}
-            </Text>
-          </HStack>
-          <Text marginBottom={10}>{work.description}</Text>
-        </>
-      ))}
+      <ul>
+        {cvData.workExpirience.map((work, index) => (
+          <li key={index}>
+            <Heading marginBottom={1} fontSize={18}>
+              {work.jobPosition}
+            </Heading>
+            <HStack marginBottom={1} spacing="auto">
+              <Text>{work.company}</Text>
+              <Text>
+                {work.startDateMonth}.{work.startDateYear}-{work.endDateMonth}.
+                {work.endDateYear}
+              </Text>
+            </HStack>
+            <Text marginBottom={10}>{work.description}</Text>
+          </li>
+        ))}
+      </ul>
       <Divider borderColor="black" marginBottom={3}></Divider>
       <Heading fontSize={20} marginBottom={2}>
         CERTIFICATES

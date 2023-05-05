@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
 import FormInput from "./FormInput";
 
 const zString = (message: String) => {
@@ -21,8 +21,20 @@ const shema = z.object({
 
 type FormData = z.infer<typeof shema>;
 
+export interface FormProperities {
+  id: number;
+  name: string;
+  surname: string;
+  positon: string;
+  phoneNumber: number;
+  email: string;
+  linkedin: string;
+  city: string;
+}
+
 interface Props {
-  dataToSend: (data: FieldValues) => void;
+  receivedFormData: FormData;
+  dataToSend: (data: FormProperities) => void;
 }
 
 const Form = ({ dataToSend }: Props) => {
@@ -34,7 +46,17 @@ const Form = ({ dataToSend }: Props) => {
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    dataToSend(data);
+    let obj = {
+      id: 0,
+      name: data.name,
+      surname: data.surname,
+      positon: data.positon,
+      phoneNumber: data.phoneNumber,
+      email: data.email,
+      linkedin: data.linkedin,
+      city: data.city,
+    };
+    dataToSend(obj);
   };
 
   return (

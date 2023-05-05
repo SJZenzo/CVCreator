@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import CreatedCV from "./components/CreatedCV";
-import Form from "./components/Form";
+import FormsHolder from "./components/FormsHolder";
 
 const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Form />,
+        element: <FormsHolder />,
       },
     ],
   },

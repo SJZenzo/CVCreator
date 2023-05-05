@@ -32,16 +32,18 @@ const AsidePanel = () => {
         <Heading fontSize={20} marginBottom={2}>
           EDUCATION
         </Heading>
-        {cvData.education.map((level) => (
-          <>
-            <Text>
-              {level.startYear}-{level.endYear}
-            </Text>
-            <Text>{level.istytutionName}</Text>
-            <Text>{level.fieldOfStudy}</Text>
-            <Text marginBottom={3}>{level.degree}</Text>
-          </>
-        ))}
+        <ul>
+          {cvData.education.map((level, index) => (
+            <li key={index}>
+              <Text>
+                {level.startYear}-{level.endYear}
+              </Text>
+              <Text>{level.istytutionName}</Text>
+              <Text>{level.fieldOfStudy}</Text>
+              <Text marginBottom={3}>{level.degree}</Text>
+            </li>
+          ))}
+        </ul>
         <Divider borderColor="black" marginBottom={3}></Divider>
         <Heading fontSize={20} marginBottom={2}>
           LANGUAGES
