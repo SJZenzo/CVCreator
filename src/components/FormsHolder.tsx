@@ -1,21 +1,11 @@
-import Form from "./Form";
+import FirstForm, { FormProperities } from "./FirstForm";
 
 const FormsHolder = () => {
   const addFormData = (data: FormProperities) => {
     console.log(data);
   };
-  interface FormProperities {
-    id: number;
-    name: string;
-    surname: string;
-    positon: string;
-    phoneNumber: number;
-    email: string;
-    linkedin: string;
-    city: string;
-  }
 
-  return <Form receivedFormData={(obj: FormProperities) => console.log(obj)} />;
+  return <FirstForm dataToSend={addFormData} />;
 };
 
 export default FormsHolder;

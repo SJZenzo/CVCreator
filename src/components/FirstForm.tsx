@@ -2,6 +2,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FieldValues } from "react-hook-form";
 import FormInput from "./FormInput";
+import SkillPopup from "./SkillPopup";
 
 const zString = (message: String) => {
   return z
@@ -33,19 +34,18 @@ export interface FormProperities {
 }
 
 interface Props {
-  receivedFormData: FormData;
+  // receivedFormData: FormData;
   dataToSend: (data: FormProperities) => void;
 }
 
-const Form = ({ dataToSend }: Props) => {
+const FirstForm = ({ dataToSend }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
     let obj = {
       id: 0,
       name: data.name,
@@ -76,13 +76,14 @@ const Form = ({ dataToSend }: Props) => {
             register={register}
           />
         </div>
-        <FormInput
-          inputType="positon"
-          error={errors.positon?.message}
-          hint="Stanowisko"
-          register={register}
-        />
         <div className="row">
+          <FormInput
+            inputType="positon"
+            error={errors.positon?.message}
+            hint="Stanowisko"
+            register={register}
+          />
+
           <FormInput
             inputType="phoneNumber"
             error={errors.phoneNumber?.message}
@@ -90,6 +91,8 @@ const Form = ({ dataToSend }: Props) => {
             register={register}
             type="number"
           />
+        </div>
+        <div className="row">
           <FormInput
             inputType="email"
             error={errors.email?.message}
@@ -97,15 +100,7 @@ const Form = ({ dataToSend }: Props) => {
             register={register}
             type="email"
           />
-        </div>
-        <div className="row">
-          <FormInput
-            inputType="linkedin"
-            error={errors.linkedin?.message}
-            hint="Linkedin link"
-            register={register}
-            type="link"
-          />
+
           <FormInput
             inputType="city"
             error={errors.city?.message}
@@ -113,6 +108,13 @@ const Form = ({ dataToSend }: Props) => {
             register={register}
           />
         </div>
+        <FormInput
+          inputType="linkedin"
+          error={errors.linkedin?.message}
+          hint="Linkedin link"
+          register={register}
+          type="link"
+        />
         <button
           className="btn btn-primary mb-3"
           type="submit"
@@ -121,8 +123,9 @@ const Form = ({ dataToSend }: Props) => {
           Submit
         </button>
       </div>
+      <SkillPopup />
     </form>
   );
 };
 
-export default Form;
+export default FirstForm;
