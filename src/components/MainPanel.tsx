@@ -7,7 +7,7 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import cvData from "../data/cvData";
+import cvData from "../data/cvDataExample";
 
 const MainPanel = () => {
   return (

@@ -2,7 +2,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FieldValues } from "react-hook-form";
 import FormInput from "./FormInput";
-import SkillPopup from "./SkillPopup";
+import { Link } from "react-router-dom";
+import useFormStore from "../data/store";
 
 const zString = (message: String) => {
   return z
@@ -22,7 +23,7 @@ const shema = z.object({
 
 type FormData = z.infer<typeof shema>;
 
-export interface FormProperities {
+export interface FirstFormProperities {
   id: number;
   name: string;
   surname: string;
@@ -33,12 +34,9 @@ export interface FormProperities {
   city: string;
 }
 
-interface Props {
-  // receivedFormData: FormData;
-  dataToSend: (data: FormProperities) => void;
-}
+const FirstForm = () => {
+  const { firstFormData, saveFirstForm } = useFormStore();
 
-const FirstForm = ({ dataToSend }: Props) => {
   const {
     register,
     handleSubmit,
@@ -56,7 +54,7 @@ const FirstForm = ({ dataToSend }: Props) => {
       linkedin: data.linkedin,
       city: data.city,
     };
-    dataToSend(obj);
+    saveFirstForm(obj);
   };
 
   return (
@@ -100,7 +98,6 @@ const FirstForm = ({ dataToSend }: Props) => {
             register={register}
             type="email"
           />
-
           <FormInput
             inputType="city"
             error={errors.city?.message}
@@ -115,15 +112,16 @@ const FirstForm = ({ dataToSend }: Props) => {
           register={register}
           type="link"
         />
-        <button
-          className="btn btn-primary mb-3"
-          type="submit"
-          style={{ float: "right" }}
-        >
-          Submit
-        </button>
+        <Link to="second">
+          <button
+            className="btn btn-primary mb-3"
+            type="submit"
+            style={{ float: "right" }}
+          >
+            Dalej
+          </button>
+        </Link>
       </div>
-      <SkillPopup />
     </form>
   );
 };

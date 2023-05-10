@@ -3,7 +3,7 @@ import { BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiFillLinkedin } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
-import cvData from "../data/cvData";
+import cvData from "../data/cvDataExample";
 
 const AsidePanel = () => {
   return (

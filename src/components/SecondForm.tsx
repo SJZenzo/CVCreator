@@ -1,47 +1,39 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FieldValues } from "react-hook-form";
-import FormInput from "./FormInput";
+import { Link } from "react-router-dom";
+import SkillPopup from "./SkillPopup";
+import { HStack } from "@chakra-ui/react";
+import useFormStore from "../data/store";
 
-const zString = (message: String) => {
-  return z
-    .string()
-    .min(3, { message: message + " must be at least 3 charakters" });
-};
-
-const shema = z.object({
-  name: zString("Name"),
-  surname: zString("Surname"),
-  positon: zString("Posidion"),
-  phoneNumber: z.number({ invalid_type_error: "Number field is required" }),
-  email: zString("Email"),
-  linkedin: zString("Linkedin link"),
-  city: zString("City name"),
-});
-
-type FormData = z.infer<typeof shema>;
-
-interface educationProps {
-  degree: string;
-  startYear: number;
-  endYear: number;
-  istytutionName: string;
-  fieldOfStudy: string;
-}
-
-export interface FormProperities {
-  id: number;
+export interface SecondFormProperities {
   skills: string[];
-  education: educationProps[];
 }
 
-interface Props {
-  // receivedFormData: FormData;
-  dataToSend: (data: FormProperities) => void;
-}
+const SecondForm = () => {
+  const { secondFormData } = useFormStore();
 
-const SecondForm = ({ dataToSend }: Props) => {
-  return <div>SecondForm</div>;
+  return (
+    <>
+      <ul>
+        {secondFormData?.skills.map((skill, index) => (
+          <li key={index}>{skill}</li>
+        ))}
+      </ul>
+      <HStack align="center" justify="center" spacing={20}>
+        <Link to="/">
+          <button className="btn btn-primary" type="submit">
+            Wstecz
+          </button>
+        </Link>
+
+        <SkillPopup />
+
+        <Link to="/third">
+          <button className="btn btn-primary" type="submit">
+            Dalej
+          </button>
+        </Link>
+      </HStack>
+    </>
+  );
 };
 
 export default SecondForm;
