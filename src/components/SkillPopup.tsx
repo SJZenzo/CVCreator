@@ -25,7 +25,7 @@ type FormData = z.infer<typeof shema>;
 const SkillPopup = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef(null);
-  const { secondFormData, saveSecondForm } = useFormStore();
+  //const { secondFormData, saveSecondForm } = useFormStore();
 
   const {
     register,
