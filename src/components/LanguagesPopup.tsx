@@ -4,14 +4,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import useFormStore from "../data/store";
 import FormDialogWindow from "./FormDialogWindow";
+import { zString } from "./FirstForm";
 
 const shema = z.object({
-  skill: z.string().min(3, { message: "Skill must be at least 3 charakters" }),
+  language: zString("Język"),
+  level: zString("Poziom"),
 });
 
 type FormData = z.infer<typeof shema>;
 
-const SkillPopup = () => {
+const LanguagesPopup = () => {
   const { secondFormData, saveSecondForm } = useFormStore();
 
   const {
@@ -22,14 +24,15 @@ const SkillPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (secondFormData.skills) {
+    if (secondFormData.languages) {
       saveSecondForm({
         ...secondFormData,
-        skills: [...secondFormData.skills, data.skill],
+        languages: [...secondFormData.languages, data],
       });
     } else {
-      saveSecondForm({ ...secondFormData, skills: [data.skill] });
+      saveSecondForm({ ...secondFormData, languages: [data] });
     }
+
     reset();
   };
 
@@ -43,14 +46,20 @@ const SkillPopup = () => {
     >
       <FormDialogWindow
         onSubmit={handleSubmit(onSubmit)}
-        dialogHeader="Dodawanie umiejętności"
+        dialogHeader="Dodawanie wykształcenia"
         isValid={isValid}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="m-3 form-floating">
           <FormInput
-            inputType="skill"
-            error={errors.skill?.message}
-            hint="Opis umiejętności"
+            inputType="language"
+            error={errors.language?.message}
+            hint="Język"
+            register={register}
+          />
+          <FormInput
+            inputType="level"
+            error={errors.level?.message}
+            hint="Poziom"
             register={register}
           />
         </form>
@@ -59,4 +68,4 @@ const SkillPopup = () => {
   );
 };
 
-export default SkillPopup;
+export default LanguagesPopup;

@@ -4,6 +4,7 @@ import CreatedCV from "./components/CreatedCV";
 import FirstForm from "./components/FirstForm";
 import SecondForm from "./components/SecondForm";
 import ThirdForm from "./components/ThirdForm";
+import EndResult from "./components/EndResult";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "third",
         element: <ThirdForm />,
+      },
+      {
+        path: "result",
+        element: <EndResult />,
       },
     ],
   },

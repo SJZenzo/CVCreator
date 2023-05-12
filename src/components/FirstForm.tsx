@@ -1,30 +1,34 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FieldValues } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import { Link } from "react-router-dom";
 import useFormStore from "../data/store";
+import NavButton from "./NavButton";
+import { useNavigate } from "react-router-dom";
 
-const zString = (message: String) => {
+export const zString = (message: String) => {
   return z
     .string()
-    .min(3, { message: message + " must be at least 3 charakters" });
+    .min(3, { message: message + " musi zawierać przynajmniej 3 znaki" });
+};
+
+export const zNumber = (message: String) => {
+  return z.number({ invalid_type_error: message + " jest wymagane" });
 };
 
 const shema = z.object({
-  name: zString("Name"),
-  surname: zString("Surname"),
-  positon: zString("Posidion"),
-  phoneNumber: z.number({ invalid_type_error: "Number field is required" }),
+  name: zString("Imię"),
+  surname: zString("Nazwisko"),
+  positon: zString("Stanowisko"),
+  phoneNumber: zNumber("Pole numeru telefonu"),
   email: zString("Email"),
   linkedin: zString("Linkedin link"),
-  city: zString("City name"),
+  city: zString("Miasto"),
 });
 
 type FormData = z.infer<typeof shema>;
 
 export interface FirstFormProperities {
-  id: number;
   name: string;
   surname: string;
   positon: string;
@@ -36,6 +40,7 @@ export interface FirstFormProperities {
 
 const FirstForm = () => {
   const { firstFormData, saveFirstForm } = useFormStore();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -43,18 +48,9 @@ const FirstForm = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
-  const onSubmit = (data: FieldValues) => {
-    let obj = {
-      id: 0,
-      name: data.name,
-      surname: data.surname,
-      positon: data.positon,
-      phoneNumber: data.phoneNumber,
-      email: data.email,
-      linkedin: data.linkedin,
-      city: data.city,
-    };
-    saveFirstForm(obj);
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    saveFirstForm(data);
+    navigate("second");
   };
 
   return (
@@ -66,12 +62,14 @@ const FirstForm = () => {
             error={errors.name?.message}
             hint="Imię"
             register={register}
+            defaultValue={firstFormData?.name}
           />
           <FormInput
             inputType="surname"
             error={errors.surname?.message}
             hint="Nazwisko"
             register={register}
+            defaultValue={firstFormData?.surname}
           />
         </div>
         <div className="row">
@@ -80,6 +78,7 @@ const FirstForm = () => {
             error={errors.positon?.message}
             hint="Stanowisko"
             register={register}
+            defaultValue={firstFormData?.positon}
           />
 
           <FormInput
@@ -88,6 +87,7 @@ const FirstForm = () => {
             hint="Numer telefonu"
             register={register}
             type="number"
+            defaultValue={firstFormData?.phoneNumber}
           />
         </div>
         <div className="row">
@@ -97,12 +97,14 @@ const FirstForm = () => {
             hint="Email"
             register={register}
             type="email"
+            defaultValue={firstFormData?.email}
           />
           <FormInput
             inputType="city"
             error={errors.city?.message}
             hint="Miasto"
             register={register}
+            defaultValue={firstFormData?.city}
           />
         </div>
         <FormInput
@@ -111,16 +113,11 @@ const FirstForm = () => {
           hint="Linkedin link"
           register={register}
           type="link"
+          defaultValue={firstFormData?.linkedin}
         />
-        <Link to="second">
-          <button
-            className="btn btn-primary mb-3"
-            type="submit"
-            style={{ float: "right" }}
-          >
-            Dalej
-          </button>
-        </Link>
+        <div style={{ float: "right" }}>
+          <NavButton buttonText="Dalej" onClick={handleSubmit(onSubmit)} />
+        </div>
       </div>
     </form>
   );
