@@ -7,6 +7,8 @@ import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { zString } from "./FirstForm";
 import { HStack } from "@chakra-ui/react";
+import WorkExpPopup from "./WorkExpPopup";
+import CertificatesPopup from "./CertificatesPopup";
 
 const shema = z.object({
   profile: zString("Profil"),
@@ -27,7 +29,7 @@ interface WorkExpirienceProps {
 
 interface CertificatesProps {
   description: string;
-  organizer: string;
+  organization: string;
 }
 
 export interface ThirdFormProperities {
@@ -63,6 +65,30 @@ const ThirdForm = () => {
             defaultValue={thirdFormData?.profile}
           />
         </form>
+        <ul>
+          {thirdFormData.workExpirience?.map((exp, index) => (
+            <li key={index}>
+              <p>{exp.jobPosition}</p>
+              <p>{exp.company}</p>
+              <p>
+                {exp.startDateMonth}.{exp.startDateYear} - {exp.endDateMonth}.
+                {exp.endDateYear}
+              </p>
+              <p>{exp.city}</p>
+              <p>{exp.description}</p>
+            </li>
+          ))}
+        </ul>
+        <WorkExpPopup />
+        <ul>
+          {thirdFormData.certificates?.map((certificate, index) => (
+            <li key={index}>
+              <p>{certificate.description}</p>
+              <p>{certificate.organization}</p>
+            </li>
+          ))}
+        </ul>
+        <CertificatesPopup />
         <HStack justify="space-between" padding={4}>
           <NavButton onClick={() => navigate("/second")} buttonText="Wstecz" />
           <NavButton onClick={() => navigate("/result")} buttonText="Zakończ" />
