@@ -7,21 +7,32 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import cvData from "../data/cvDataExample";
+import { CertificatesProps, WorkExpirienceProps } from "../../data/store";
 
-const MainPanel = () => {
+interface MainProps {
+  profile: string | null;
+  workExpirience: WorkExpirienceProps[] | null;
+  certificates: CertificatesProps[] | null;
+  skills: string[] | null;
+}
+
+interface Props {
+  inputData: MainProps;
+}
+
+const MainPanel = ({ inputData }: Props) => {
   return (
     <Box p={3} marginX={5}>
       <Heading fontSize={20} marginBottom={2}>
         PROFILE
       </Heading>
-      <Text marginBottom={3}>{cvData.profile}</Text>
+      <Text marginBottom={3}>{inputData.profile}</Text>
       <Divider borderColor="black" marginBottom={3}></Divider>
       <Heading fontSize={20} marginBottom={5}>
         WORK EXPIRIENCE
       </Heading>
       <ul>
-        {cvData.workExpirience.map((work, index) => (
+        {inputData.workExpirience?.map((work, index) => (
           <li key={index}>
             <Heading marginBottom={1} fontSize={18}>
               {work.jobPosition}
@@ -41,10 +52,10 @@ const MainPanel = () => {
       <Heading fontSize={20} marginBottom={2}>
         CERTIFICATES
       </Heading>
-      {cvData.certificates.map((certificate) => (
+      {inputData.certificates?.map((certificate) => (
         <>
           <Text marginBottom={1}>{certificate.description}</Text>
-          <Text marginBottom={5}>{certificate.organizer}</Text>
+          <Text marginBottom={5}>{certificate.organization}</Text>
         </>
       ))}
       <Divider borderColor="black" marginBottom={3}></Divider>
@@ -52,7 +63,7 @@ const MainPanel = () => {
         SKILLS
       </Heading>
       <UnorderedList marginBottom={3}>
-        {cvData.skills.map((skill) => (
+        {inputData.skills?.map((skill) => (
           <ListItem key={skill}>{skill}</ListItem>
         ))}
       </UnorderedList>

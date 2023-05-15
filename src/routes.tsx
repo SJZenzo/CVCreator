@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import CreatedCV from "./components/CreatedCV";
-import FirstForm from "./components/FirstForm";
-import SecondForm from "./components/SecondForm";
-import ThirdForm from "./components/ThirdForm";
-import EndResult from "./components/EndResult";
+import FirstForm from "./components/form/FirstForm";
+import SecondForm from "./components/form/SecondForm";
+import ThirdForm from "./components/form/ThirdForm";
+import EndResult from "./components/navigation/EndResult";
+import CVExample from "./components/navigation/CVExample";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/example",
-        element: <CreatedCV />,
+        element: <CVExample />,
       },
       {
         index: true,

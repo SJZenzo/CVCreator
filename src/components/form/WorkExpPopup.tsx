@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import useFormStore from "../data/store";
+import useFormStore from "../../data/store";
 import FormDialogWindow from "./FormDialogWindow";
 import { zNumber, zString } from "./FirstForm";
 

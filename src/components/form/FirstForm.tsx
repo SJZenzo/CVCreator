@@ -2,8 +2,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import useFormStore from "../data/store";
-import NavButton from "./NavButton";
+import useFormStore from "../../data/store";
+import NavButton from "../navigation/NavButton";
 import { useNavigate } from "react-router-dom";
 
 export const zString = (message: String) => {
@@ -19,7 +19,7 @@ export const zNumber = (message: String) => {
 const shema = z.object({
   name: zString("Imię"),
   surname: zString("Nazwisko"),
-  positon: zString("Stanowisko"),
+  position: zString("Stanowisko"),
   phoneNumber: zNumber("Pole numeru telefonu"),
   email: zString("Email"),
   linkedin: zString("Linkedin link"),
@@ -27,16 +27,6 @@ const shema = z.object({
 });
 
 type FormData = z.infer<typeof shema>;
-
-export interface FirstFormProperities {
-  name: string;
-  surname: string;
-  positon: string;
-  phoneNumber: number;
-  email: string;
-  linkedin: string;
-  city: string;
-}
 
 const FirstForm = () => {
   const { firstFormData, saveFirstForm } = useFormStore();
@@ -74,11 +64,11 @@ const FirstForm = () => {
         </div>
         <div className="row">
           <FormInput
-            inputType="positon"
-            error={errors.positon?.message}
+            inputType="position"
+            error={errors.position?.message}
             hint="Stanowisko"
             register={register}
-            defaultValue={firstFormData?.positon}
+            defaultValue={firstFormData?.position}
           />
 
           <FormInput

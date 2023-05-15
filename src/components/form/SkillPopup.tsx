@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import useFormStore from "../data/store";
+import useFormStore from "../../data/store";
 import FormDialogWindow from "./FormDialogWindow";
 
 const shema = z.object({
@@ -12,7 +12,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const SkillPopup = () => {
-  const { secondFormData, saveSecondForm } = useFormStore();
+  const { thirdFormData, saveThirdForm } = useFormStore();
 
   const {
     register,
@@ -22,13 +22,13 @@ const SkillPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (secondFormData.skills) {
-      saveSecondForm({
-        ...secondFormData,
-        skills: [...secondFormData.skills, data.skill],
+    if (thirdFormData.skills) {
+      saveThirdForm({
+        ...thirdFormData,
+        skills: [...thirdFormData.skills, data.skill],
       });
     } else {
-      saveSecondForm({ ...secondFormData, skills: [data.skill] });
+      saveThirdForm({ ...thirdFormData, skills: [data.skill] });
     }
     reset();
   };

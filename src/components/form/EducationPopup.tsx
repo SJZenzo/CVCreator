@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
-import useFormStore from "../data/store";
+import useFormStore from "../../data/store";
 import FormDialogWindow from "./FormDialogWindow";
 import { zNumber, zString } from "./FirstForm";
 
@@ -64,14 +64,14 @@ const EducationPopup = () => {
             error={errors.startYear?.message}
             hint="Rok początku"
             register={register}
-            type="number"
+            type="date"
           />
           <FormInput
             inputType="endYear"
             error={errors.endYear?.message}
             hint="Rok zakończenia"
             register={register}
-            type="number"
+            type="date"
           />
           <FormInput
             inputType="instytutionName"

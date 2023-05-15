@@ -1,7 +1,55 @@
 import { create } from "zustand";
-import { FirstFormProperities } from "../components/FirstForm";
-import { SecondFormProperities } from "../components/SecondForm";
-import { ThirdFormProperities } from "../components/ThirdForm";
+
+export interface FirstFormProperities {
+  name: string;
+  surname: string;
+  position: string;
+  phoneNumber: number;
+  email: string;
+  linkedin: string;
+  city: string;
+}
+
+export interface EducationDegreeProps {
+  degree: string;
+  startYear: number;
+  endYear: number;
+  instytutionName: string;
+  fieldOfStudy: string;
+}
+
+export interface LanguageProps {
+  language: string;
+  level: string;
+}
+
+export interface SecondFormProperities {
+  educationDegree: EducationDegreeProps[] | null;
+  languages: LanguageProps[] | null;
+  profile: string | null;
+}
+
+export interface WorkExpirienceProps {
+  jobPosition: string;
+  company: string;
+  city: string;
+  startDateYear: number;
+  startDateMonth: number;
+  endDateYear: number | null;
+  endDateMonth: number | null;
+  description: string;
+}
+
+export interface CertificatesProps {
+  description: string;
+  organization: string;
+}
+
+export interface ThirdFormProperities {
+  workExpirience: WorkExpirienceProps[] | null;
+  certificates: CertificatesProps[] | null;
+  skills: string[] | null;
+}
 
 interface FormStore {
   firstFormData: FirstFormProperities | null;
@@ -14,8 +62,8 @@ interface FormStore {
 
 const useFormStore = create<FormStore>((set) => ({
   firstFormData: null,
-  secondFormData: { educationDegree: null, skills: null, languages: null },
-  thirdFormData: { profile: null, workExpirience: null, certificates: null },
+  secondFormData: { educationDegree: null, languages: null, profile: null },
+  thirdFormData: { workExpirience: null, certificates: null, skills: null },
   saveFirstForm: (formData) => set(() => ({ firstFormData: formData })),
   saveSecondForm: (formData) => set(() => ({ secondFormData: formData })),
   saveThirdForm: (formData) => set(() => ({ thirdFormData: formData })),

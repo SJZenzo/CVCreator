@@ -1,13 +1,23 @@
 import { Box, Divider, Heading, Stack, Text } from "@chakra-ui/react";
 
-const Header = () => {
+interface HeaderProps {
+  name: string;
+  surname: string;
+  position: string;
+}
+
+interface Props {
+  inputData: HeaderProps;
+}
+
+const Header = ({ inputData }: Props) => {
   return (
     <>
       <Box p={3} textAlign="center">
         <Heading as="h1" size="xl">
-          Sławomir Woryna
+          {inputData.name} {inputData.surname}
         </Heading>
-        <Text fontSize="xl">Frontend developer</Text>
+        <Text fontSize="xl">{inputData.position}</Text>
         <Stack padding="10px">
           <Divider borderColor="black"></Divider>
         </Stack>

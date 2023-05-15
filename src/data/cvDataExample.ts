@@ -1,32 +1,34 @@
-export default {
-  name: "sławomir Woryna",
+const cvData = {
+  type: "EXAMPLE" as const,
+  name: "Sławomir",
+  surname: "Woryna",
   positon: "Frontend developer",
   phoneNumber: 536357781,
   email: "slawek.4363@gmail.com",
   linkedinProfile: "https://www.linkedin.com/in/sławomir-woryna-34a1791ba/",
   city: "Bielsko-Biała",
-  skills: ["skill 1", "skill 2", "skill 3", "skill 4"],
+
   education: [
     {
       degree: "inżynier",
       startYear: 2019,
       endYear: 2023,
-      istytutionName: "Politecznika Śląska",
+      instytutionName: "Politecznika Śląska",
       fieldOfStudy: "Automatyka i robotyka",
     },
     {
       degree: "średnie",
       startYear: 2015,
       endYear: 2019,
-      istytutionName:
+      instytutionName:
         "Technikum nr.4 w ZS6 im. Króla Jana III Sobieskiego w Jastrzębiu-Zdroju",
       fieldOfStudy: "Mechatronik",
     },
   ],
   languages: [
-    { lenguage: "Polski", level: "ojczysty" },
-    { lenguage: "Angielski", level: "komunikatywny" },
-    { lenguage: "Niemiecki", level: "podstawowy" },
+    { language: "Polski", level: "ojczysty" },
+    { language: "Angielski", level: "komunikatywny" },
+    { language: "Niemiecki", level: "podstawowy" },
   ],
   profile:
     "some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text ",
@@ -56,12 +58,15 @@ export default {
     {
       description:
         "Programowanie SIEMENS SIMATIC S7-1200 w TIA PORTAL - poziom 1",
-      organizer: "EMT-SYSTEMS",
+      organization: "EMT-SYSTEMS",
     },
     {
       description:
         "Programowanie SIEMENS SIMATIC S7-1200 w TIA PORTAL - poziom 2",
-      organizer: "EMT-SYSTEMS",
+      organization: "EMT-SYSTEMS",
     },
   ],
+  skills: ["skill 1", "skill 2", "skill 3", "skill 4"],
 };
+
+export default cvData;
