@@ -1,4 +1,4 @@
-import { HStack, List, ListItem, OrderedList } from "@chakra-ui/react";
+import { HStack, List, ListItem } from "@chakra-ui/react";
 import useFormStore from "../../data/store";
 import NavButton from "../navigation/NavButton";
 import EducationPopup from "./EducationPopup";

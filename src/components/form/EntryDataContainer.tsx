@@ -1,5 +1,4 @@
-import { Box, Container, SkeletonText } from "@chakra-ui/react";
-import { EducationDegreeProps, LanguageProps } from "../../data/store";
+import { Container, SkeletonText } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 // type EntryItemType = LanguageProps | EducationDegreeProps;
