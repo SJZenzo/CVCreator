@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { HStack, List, ListItem, OrderedList } from "@chakra-ui/react";
 import useFormStore from "../../data/store";
 import NavButton from "../navigation/NavButton";
 import EducationPopup from "./EducationPopup";
@@ -9,9 +9,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { zString } from "./FirstForm";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import FormContainer from "./FormContainer";
+import EntryDataContainer from "./EntryDataContainer";
 
 const shema = z.object({
-  profile: zString("Profil"),
+  profile: zString("Wprowadzenie opisu"),
 });
 
 type FormData = z.infer<typeof shema>;
@@ -32,46 +34,57 @@ const SecondForm = () => {
   };
 
   return (
-    <Box className="container-sm">
-      <ul>
-        {secondFormData.educationDegree?.map((degree, index) => (
-          <li key={index}>
-            <p>{degree.degree}</p>
-            <p>
-              {degree.startYear} - {degree.endYear}
-            </p>
-            <p>{degree.instytutionName}</p>
-            <p>{degree.fieldOfStudy}</p>
-          </li>
-        ))}
-      </ul>
-      <EducationPopup />
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      {secondFormData.educationDegree ? (
+        <List>
+          {secondFormData.educationDegree.map((degree, index) => (
+            <EntryDataContainer>
+              <ListItem key={index}>
+                <p>{degree.degree}</p>
+                <p>
+                  {degree.startDate} - {degree.endDate}
+                </p>
+                <p>{degree.instytutionName}</p>
+                <p>{degree.fieldOfStudy}</p>
+              </ListItem>
+            </EntryDataContainer>
+          ))}
+        </List>
+      ) : (
+        <EntryDataContainer />
+      )}
 
-      <ul>
-        {secondFormData.languages?.map((lang, index) => (
-          <li key={index}>
-            {lang.language}: {lang.level}
-          </li>
-        ))}
-      </ul>
+      <EducationPopup />
+      {secondFormData.languages ? (
+        <List>
+          {secondFormData.languages.map((lang, index) => (
+            <EntryDataContainer>
+              <ListItem key={index}>
+                {lang.language}: {lang.level}
+              </ListItem>
+            </EntryDataContainer>
+          ))}
+        </List>
+      ) : (
+        <EntryDataContainer noOfLine={1} />
+      )}
 
       <LanguagesPopup />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="m-3 form-floating">
-        <FormInput
-          inputType="profile"
-          error={errors.profile?.message}
-          hint="Profil"
-          register={register}
-          defaultValue={secondFormData?.profile}
-        />
-      </form>
+      <FormInput
+        inputType="profile"
+        error={errors.profile?.message}
+        hint="Profil"
+        register={register}
+        defaultValue={secondFormData?.profile}
+        expendableText={true}
+      />
 
       <HStack justify="space-between" padding={4}>
-        <NavButton onClick={() => navigate("/")} buttonText="Wstecz" />
-        <NavButton onClick={handleSubmit(onSubmit)} buttonText="Dalej" />
+        <NavButton onClick={() => navigate("/")}>Wstecz</NavButton>
+        <NavButton onClick={handleSubmit(onSubmit)}>Dalej</NavButton>
       </HStack>
-    </Box>
+    </FormContainer>
   );
 };
 

@@ -1,13 +1,16 @@
+import { Button } from "@chakra-ui/react";
+import { ReactNode } from "react";
+
 interface Props {
-  buttonText: string;
+  children: ReactNode;
   onClick?: () => void;
 }
 
-const NavButton = ({ buttonText, onClick }: Props) => {
+const NavButton = ({ children, onClick }: Props) => {
   return (
-    <button className="btn btn-primary my-3" type="submit" onClick={onClick}>
-      {buttonText}
-    </button>
+    <Button colorScheme="blue" marginBottom={5} onClick={onClick}>
+      {children}
+    </Button>
   );
 };
 

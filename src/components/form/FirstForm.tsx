@@ -6,10 +6,11 @@ import useFormStore from "../../data/store";
 import NavButton from "../navigation/NavButton";
 import { useNavigate } from "react-router-dom";
 
+import { Box } from "@chakra-ui/react";
+import FormContainer from "./FormContainer";
+
 export const zString = (message: String) => {
-  return z
-    .string()
-    .min(3, { message: message + " musi zawierać przynajmniej 3 znaki" });
+  return z.string().min(1, { message: message + " jest wymagane" });
 };
 
 export const zNumber = (message: String) => {
@@ -21,8 +22,8 @@ const shema = z.object({
   surname: zString("Nazwisko"),
   position: zString("Stanowisko"),
   phoneNumber: zNumber("Pole numeru telefonu"),
-  email: zString("Email"),
-  linkedin: zString("Linkedin link"),
+  email: zString("Wprowadzenie emailu"),
+  linkedin: zString("Wprowadzenie linku"),
   city: zString("Miasto"),
 });
 
@@ -44,72 +45,75 @@ const FirstForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="m-3 form-floating">
-      <div className="container-sm">
-        <div className="row">
-          <FormInput
-            inputType="name"
-            error={errors.name?.message}
-            hint="Imię"
-            register={register}
-            defaultValue={firstFormData?.name}
-          />
-          <FormInput
-            inputType="surname"
-            error={errors.surname?.message}
-            hint="Nazwisko"
-            register={register}
-            defaultValue={firstFormData?.surname}
-          />
-        </div>
-        <div className="row">
-          <FormInput
-            inputType="position"
-            error={errors.position?.message}
-            hint="Stanowisko"
-            register={register}
-            defaultValue={firstFormData?.position}
-          />
-
-          <FormInput
-            inputType="phoneNumber"
-            error={errors.phoneNumber?.message}
-            hint="Numer telefonu"
-            register={register}
-            type="number"
-            defaultValue={firstFormData?.phoneNumber}
-          />
-        </div>
-        <div className="row">
-          <FormInput
-            inputType="email"
-            error={errors.email?.message}
-            hint="Email"
-            register={register}
-            type="email"
-            defaultValue={firstFormData?.email}
-          />
-          <FormInput
-            inputType="city"
-            error={errors.city?.message}
-            hint="Miasto"
-            register={register}
-            defaultValue={firstFormData?.city}
-          />
-        </div>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <div className="row">
         <FormInput
-          inputType="linkedin"
-          error={errors.linkedin?.message}
-          hint="Linkedin link"
+          inputType="name"
+          error={errors.name?.message}
+          hint="Imię"
           register={register}
-          type="link"
-          defaultValue={firstFormData?.linkedin}
+          defaultValue={firstFormData?.name}
         />
-        <div style={{ float: "right" }}>
-          <NavButton buttonText="Dalej" onClick={handleSubmit(onSubmit)} />
-        </div>
+        <FormInput
+          inputType="surname"
+          error={errors.surname?.message}
+          hint="Nazwisko"
+          register={register}
+          defaultValue={firstFormData?.surname}
+        />
       </div>
-    </form>
+      <div className="row">
+        <FormInput
+          inputType="position"
+          error={errors.position?.message}
+          hint="Stanowisko"
+          register={register}
+          defaultValue={firstFormData?.position}
+        />
+
+        <FormInput
+          inputType="phoneNumber"
+          error={errors.phoneNumber?.message}
+          hint="Numer telefonu"
+          register={register}
+          type="number"
+          defaultValue={firstFormData?.phoneNumber}
+        />
+      </div>
+      <div className="row">
+        <FormInput
+          inputType="email"
+          error={errors.email?.message}
+          hint="Email"
+          register={register}
+          type="email"
+          defaultValue={firstFormData?.email}
+        />
+        <FormInput
+          inputType="city"
+          error={errors.city?.message}
+          hint="Miasto"
+          register={register}
+          defaultValue={firstFormData?.city}
+        />
+      </div>
+      <FormInput
+        inputType="linkedin"
+        error={errors.linkedin?.message}
+        hint="Linkedin link"
+        register={register}
+        type="link"
+        defaultValue={firstFormData?.linkedin}
+      />
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        <NavButton onClick={handleSubmit(onSubmit)}>Dalej</NavButton>
+      </Box>
+    </FormContainer>
   );
 };
 

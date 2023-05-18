@@ -1,3 +1,5 @@
+import Textarea from "react-expanding-textarea";
+
 interface Props {
   inputType: string;
   className?: string;
@@ -6,6 +8,7 @@ interface Props {
   defaultValue?: string | number | null;
   type?: string;
   register: any;
+  expendableText?: boolean;
 }
 
 const TextInput = ({
@@ -16,18 +19,31 @@ const TextInput = ({
   defaultValue = null,
   type = "text",
   error,
+  expendableText = false,
 }: Props) => {
   return (
     <div className={className}>
       {hint}
-      <input
-        {...register(inputType, { valueAsNumber: type === "number" })}
-        id={inputType}
-        type={type}
-        className="form-control"
-        aria-label={hint}
-        defaultValue={defaultValue}
-      />
+      {expendableText ? (
+        <Textarea
+          {...register(inputType, { valueAsNumber: type === "number" })}
+          id={inputType}
+          type={type}
+          className="form-control"
+          aria-label={hint}
+          defaultValue={defaultValue}
+        />
+      ) : (
+        <input
+          {...register(inputType, { valueAsNumber: type === "number" })}
+          id={inputType}
+          type={type}
+          className="form-control"
+          aria-label={hint}
+          defaultValue={defaultValue}
+        />
+      )}
+
       {error && <p className="text-danger">{error}</p>}
     </div>
   );

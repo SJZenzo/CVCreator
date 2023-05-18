@@ -3,13 +3,13 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import useFormStore from "../../data/store";
-import FormDialogWindow from "./FormDialogWindow";
-import { zNumber, zString } from "./FirstForm";
+import FormDialogContainer from "./FormDialogContainer";
+import { zString } from "./FirstForm";
 
 const shema = z.object({
   degree: zString("Wykształcenie"),
-  startYear: zNumber("Pole roku"),
-  endYear: zNumber("Pole roku"),
+  startDate: zString("Wprowadzenie daty"),
+  endDate: zString("Wprowadzenie daty"),
   instytutionName: zString("Nazwa firmy"),
   fieldOfStudy: zString("Kierunek studiów"),
 });
@@ -27,6 +27,7 @@ const EducationPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(data.startDate);
     if (secondFormData.educationDegree) {
       saveSecondForm({
         ...secondFormData,
@@ -40,54 +41,46 @@ const EducationPopup = () => {
   };
 
   return (
-    <div
-      className="m-3"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
+    <FormDialogContainer
+      onSubmit={handleSubmit(onSubmit)}
+      dialogHeader="Dodawanie wykształcenia"
+      isValid={isValid}
     >
-      <FormDialogWindow
-        onSubmit={handleSubmit(onSubmit)}
-        dialogHeader="Dodawanie wykształcenia"
-        isValid={isValid}
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
-            inputType="degree"
-            error={errors.degree?.message}
-            hint="Poziom wykształcenia"
-            register={register}
-          />
-          <FormInput
-            inputType="startYear"
-            error={errors.startYear?.message}
-            hint="Rok początku"
-            register={register}
-            type="date"
-          />
-          <FormInput
-            inputType="endYear"
-            error={errors.endYear?.message}
-            hint="Rok zakończenia"
-            register={register}
-            type="date"
-          />
-          <FormInput
-            inputType="instytutionName"
-            error={errors.instytutionName?.message}
-            hint="Nazwa uczelni"
-            register={register}
-          />
-          <FormInput
-            inputType="fieldOfStudy"
-            error={errors.fieldOfStudy?.message}
-            hint="Dziedzina studiów"
-            register={register}
-          />
-        </form>
-      </FormDialogWindow>
-    </div>
+      <FormInput
+        inputType="degree"
+        error={errors.degree?.message}
+        hint="Poziom wykształcenia"
+        register={register}
+      />
+      <FormInput
+        inputType="startDate"
+        error={errors.startDate?.message}
+        hint="Rok początku"
+        register={register}
+        type="date"
+      />
+      <FormInput
+        inputType="endDate"
+        error={errors.endDate?.message}
+        hint="Rok zakończenia"
+        register={register}
+        type="date"
+      />
+      <FormInput
+        inputType="instytutionName"
+        error={errors.instytutionName?.message}
+        hint="Nazwa uczelni"
+        register={register}
+        expendableText={true}
+      />
+      <FormInput
+        inputType="fieldOfStudy"
+        error={errors.fieldOfStudy?.message}
+        hint="Dziedzina studiów"
+        register={register}
+        expendableText={true}
+      />
+    </FormDialogContainer>
   );
 };
 

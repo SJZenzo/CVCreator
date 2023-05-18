@@ -21,7 +21,7 @@ interface Props {
 const AsidePanel = ({ inputData }: Props) => {
   return (
     <>
-      <Box p={1} marginStart={10}>
+      <Box p={3} marginX={5}>
         <Heading fontSize={20} marginBottom={2}>
           CONTACT
         </Heading>
@@ -49,7 +49,7 @@ const AsidePanel = ({ inputData }: Props) => {
           {inputData.education?.map((level, index) => (
             <li key={index}>
               <Text>
-                {level.startYear}-{level.endYear}
+                {level.startDate}-{level.endDate}
               </Text>
               <Text>{level.instytutionName}</Text>
               <Text>{level.fieldOfStudy}</Text>

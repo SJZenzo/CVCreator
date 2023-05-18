@@ -10,6 +10,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
+import { Form } from "react-router-dom";
 
 interface Props {
   children: ReactNode;
@@ -18,7 +19,7 @@ interface Props {
   dialogHeader: string;
 }
 
-const FormDialogWindow = ({
+const FormDialogContainer = ({
   children,
   isValid = true,
   dialogHeader,
@@ -28,7 +29,13 @@ const FormDialogWindow = ({
   const cancelRef = React.useRef(null);
 
   return (
-    <div>
+    <div
+      className="m-3"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <Button onClick={onOpen}>{dialogHeader}</Button>
       <AlertDialog
         motionPreset="slideInBottom"
@@ -42,7 +49,11 @@ const FormDialogWindow = ({
         <AlertDialogContent>
           <AlertDialogHeader>{dialogHeader}</AlertDialogHeader>
           <AlertDialogCloseButton />
-          <AlertDialogBody>{children}</AlertDialogBody>
+          <AlertDialogBody>
+            <Form onSubmit={onSubmit} className="m-3 form-floating">
+              {children}
+            </Form>
+          </AlertDialogBody>
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
               Anuluj
@@ -64,4 +75,4 @@ const FormDialogWindow = ({
   );
 };
 
-export default FormDialogWindow;
+export default FormDialogContainer;

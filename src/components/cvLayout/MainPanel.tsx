@@ -27,7 +27,7 @@ const MainPanel = ({ inputData }: Props) => {
         PROFILE
       </Heading>
       <Text marginBottom={3}>{inputData.profile}</Text>
-      <Divider borderColor="black" marginBottom={3}></Divider>
+      <Divider borderColor="black" marginBottom={3} />
       <Heading fontSize={20} marginBottom={5}>
         WORK EXPIRIENCE
       </Heading>
@@ -40,15 +40,14 @@ const MainPanel = ({ inputData }: Props) => {
             <HStack marginBottom={1} spacing="auto">
               <Text>{work.company}</Text>
               <Text>
-                {work.startDateMonth}.{work.startDateYear}-{work.endDateMonth}.
-                {work.endDateYear}
+                {work.startDate} - {work.endDate}
               </Text>
             </HStack>
             <Text marginBottom={10}>{work.description}</Text>
           </li>
         ))}
       </ul>
-      <Divider borderColor="black" marginBottom={3}></Divider>
+      <Divider borderColor="black" marginBottom={3} />
       <Heading fontSize={20} marginBottom={2}>
         CERTIFICATES
       </Heading>
@@ -58,7 +57,7 @@ const MainPanel = ({ inputData }: Props) => {
           <Text marginBottom={5}>{certificate.organization}</Text>
         </>
       ))}
-      <Divider borderColor="black" marginBottom={3}></Divider>
+      <Divider borderColor="black" marginBottom={3} />
       <Heading fontSize={20} marginBottom={2}>
         SKILLS
       </Heading>

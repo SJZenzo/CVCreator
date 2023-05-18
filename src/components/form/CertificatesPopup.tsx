@@ -3,7 +3,7 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import useFormStore from "../../data/store";
-import FormDialogWindow from "./FormDialogWindow";
+import FormDialogContainer from "./FormDialogContainer";
 import { zString } from "./FirstForm";
 
 const shema = z.object({
@@ -32,39 +32,29 @@ const CertificatesPopup = () => {
     } else {
       saveThirdForm({ ...thirdFormData, certificates: [data] });
     }
-
     reset();
   };
 
   return (
-    <div
-      className="m-3"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
+    <FormDialogContainer
+      onSubmit={handleSubmit(onSubmit)}
+      dialogHeader="Dodawanie certyfikatów"
+      isValid={isValid}
     >
-      <FormDialogWindow
-        onSubmit={handleSubmit(onSubmit)}
-        dialogHeader="Dodawanie doświadzcenia"
-        isValid={isValid}
-      >
-        <form onSubmit={handleSubmit(onSubmit)} className="m-3 form-floating">
-          <FormInput
-            inputType="description"
-            error={errors.description?.message}
-            hint="Opis kursu"
-            register={register}
-          />
-          <FormInput
-            inputType="organization"
-            error={errors.organization?.message}
-            hint="Organizator"
-            register={register}
-          />
-        </form>
-      </FormDialogWindow>
-    </div>
+      <FormInput
+        inputType="description"
+        error={errors.description?.message}
+        hint="Opis kursu"
+        register={register}
+        expendableText={true}
+      />
+      <FormInput
+        inputType="organization"
+        error={errors.organization?.message}
+        hint="Organizator"
+        register={register}
+      />
+    </FormDialogContainer>
   );
 };
 

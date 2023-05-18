@@ -3,7 +3,7 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 import useFormStore from "../../data/store";
-import FormDialogWindow from "./FormDialogWindow";
+import FormDialogContainer from "./FormDialogContainer";
 
 const shema = z.object({
   skill: z.string().min(3, { message: "Skill must be at least 3 charakters" }),
@@ -34,28 +34,19 @@ const SkillPopup = () => {
   };
 
   return (
-    <div
-      className="m-3"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
+    <FormDialogContainer
+      onSubmit={handleSubmit(onSubmit)}
+      dialogHeader="Dodawanie umiejętności"
+      isValid={isValid}
     >
-      <FormDialogWindow
-        onSubmit={handleSubmit(onSubmit)}
-        dialogHeader="Dodawanie umiejętności"
-        isValid={isValid}
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
-            inputType="skill"
-            error={errors.skill?.message}
-            hint="Opis umiejętności"
-            register={register}
-          />
-        </form>
-      </FormDialogWindow>
-    </div>
+      <FormInput
+        inputType="skill"
+        error={errors.skill?.message}
+        hint="Opis umiejętności"
+        register={register}
+        expendableText={true}
+      />
+    </FormDialogContainer>
   );
 };
 
