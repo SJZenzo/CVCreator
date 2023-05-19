@@ -38,7 +38,7 @@ const cvData = {
       company: "Carboautomatyka",
       city: "Tychy",
       startDate: "2021",
-      endDate: "0",
+      endDate: "obecnie",
       description: "Progaramowanie PLC",
     },
     {

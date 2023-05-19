@@ -21,9 +21,11 @@ const TextInput = ({
   error,
   expendableText = false,
 }: Props) => {
+  let disabled = false;
   return (
     <div className={className}>
       {hint}
+
       {expendableText ? (
         <Textarea
           {...register(inputType, { valueAsNumber: type === "number" })}
@@ -32,6 +34,7 @@ const TextInput = ({
           className="form-control"
           aria-label={hint}
           defaultValue={defaultValue}
+          disabled={disabled}
         />
       ) : (
         <input
@@ -41,6 +44,7 @@ const TextInput = ({
           className="form-control"
           aria-label={hint}
           defaultValue={defaultValue}
+          disabled={disabled}
         />
       )}
 

@@ -1,3 +1,4 @@
+import { Center } from "@chakra-ui/layout";
 import useFormStore from "../../data/store";
 import CreatedCV from "./CreatedCV";
 import PdfCreator from "./PdfCreator";
@@ -33,7 +34,12 @@ const EndResult = () => {
       </>
     );
   } else {
-    return <div>Data error</div>;
+    return (
+      <Center p={10}>
+        Odpowiedzi w formularzu zostały pominięte i nie można wyświetlić
+        zawartości.
+      </Center>
+    );
   }
 };
 

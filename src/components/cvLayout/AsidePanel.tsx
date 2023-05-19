@@ -41,33 +41,43 @@ const AsidePanel = ({ inputData }: Props) => {
           <CiLocationOn />
           <Text>{inputData.city}</Text>
         </HStack>
-        <Divider borderColor="black" marginBottom={3}></Divider>
-        <Heading fontSize={20} marginBottom={2}>
-          EDUCATION
-        </Heading>
-        <ul>
-          {inputData.education?.map((level, index) => (
-            <li key={index}>
-              <Text>
-                {level.startDate}-{level.endDate}
-              </Text>
-              <Text>{level.instytutionName}</Text>
-              <Text>{level.fieldOfStudy}</Text>
-              <Text marginBottom={3}>{level.degree}</Text>
-            </li>
-          ))}
-        </ul>
-        <Divider borderColor="black" marginBottom={3}></Divider>
-        <Heading fontSize={20} marginBottom={2}>
-          LANGUAGES
-        </Heading>
-        {inputData.languages?.map((language) => (
-          <HStack>
-            <Text>
-              {language.language}: {language.level}
-            </Text>
-          </HStack>
-        ))}
+
+        {inputData.education ? (
+          <>
+            <Divider borderColor="black" marginBottom={3}></Divider>
+            <Heading fontSize={20} marginBottom={2}>
+              EDUCATION
+            </Heading>
+
+            {inputData.education.map((level, index) => (
+              <Box key={index}>
+                <Text>
+                  {level.startDate} -{" "}
+                  {level.endDate ? level.endDate : "obecnie"}
+                </Text>
+                <Text>{level.instytutionName}</Text>
+                <Text>{level.fieldOfStudy}</Text>
+                <Text marginBottom={3}>{level.degree}</Text>
+              </Box>
+            ))}
+          </>
+        ) : null}
+
+        {inputData.languages ? (
+          <>
+            <Divider borderColor="black" marginBottom={3}></Divider>
+            <Heading fontSize={20} marginBottom={2}>
+              LANGUAGES
+            </Heading>
+            {inputData.languages.map((language, index) => (
+              <HStack key={index}>
+                <Text>
+                  {language.language}: {language.level}
+                </Text>
+              </HStack>
+            ))}
+          </>
+        ) : null}
       </Box>
     </>
   );

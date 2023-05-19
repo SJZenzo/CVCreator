@@ -6,41 +6,50 @@ import WorkExpPopup from "./WorkExpPopup";
 import CertificatesPopup from "./CertificatesPopup";
 import SkillPopup from "./SkillPopup";
 import FormContainer from "./FormContainer";
+import EntryDataContainer from "./EntryDataContainer";
 
 const ThirdForm = () => {
   const { thirdFormData } = useFormStore();
   const navigate = useNavigate();
 
   return (
-    <FormContainer onSubmit={() => navigate("/result")}>
-      <ul>
-        {thirdFormData.workExpirience?.map((exp, index) => (
-          <li key={index}>
+    <FormContainer onSubmit={() => navigate("/result")} activeForm={2}>
+      {thirdFormData.workExpirience ? (
+        thirdFormData.workExpirience.map((exp, index) => (
+          <EntryDataContainer key={index}>
             <p>{exp.jobPosition}</p>
             <p>{exp.company}</p>
             <p>
-              {exp.startDate} - {exp.endDate}
+              {exp.startDate} - {exp.endDate ? exp.endDate : "obecnie"}
             </p>
             <p>{exp.city}</p>
             <p>{exp.description}</p>
-          </li>
-        ))}
-      </ul>
+          </EntryDataContainer>
+        ))
+      ) : (
+        <EntryDataContainer noOfLine={5} />
+      )}
       <WorkExpPopup />
-      <ul>
-        {thirdFormData.certificates?.map((certificate, index) => (
-          <li key={index}>
+      {thirdFormData.certificates ? (
+        thirdFormData.certificates.map((certificate, index) => (
+          <EntryDataContainer key={index}>
             <p>{certificate.description}</p>
             <p>{certificate.organization}</p>
-          </li>
-        ))}
-      </ul>
+          </EntryDataContainer>
+        ))
+      ) : (
+        <EntryDataContainer noOfLine={2} />
+      )}
       <CertificatesPopup />
-      <ul>
-        {thirdFormData.skills?.map((skill, index) => (
-          <li key={index}>{skill}</li>
-        ))}
-      </ul>
+      {thirdFormData.skills ? (
+        thirdFormData.skills.map((skill, index) => (
+          <EntryDataContainer key={index}>
+            <p>{skill}</p>
+          </EntryDataContainer>
+        ))
+      ) : (
+        <EntryDataContainer noOfLine={1} />
+      )}
       <SkillPopup />
       <HStack justify="space-between" padding={4}>
         <NavButton onClick={() => navigate("/second")}>Wstecz</NavButton>

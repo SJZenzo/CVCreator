@@ -11,7 +11,7 @@ const shema = z.object({
   company: zString("Nazwa firmy"),
   city: zString("Miasto"),
   startDate: zString("Wprowadzenie daty"),
-  endDate: zString("Wprowadzenie daty"),
+  endDate: z.string().optional(),
   description: zString("Opis"),
 });
 

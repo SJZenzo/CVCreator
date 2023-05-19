@@ -6,18 +6,23 @@ import { ReactNode } from "react";
 interface Props {
   children?: ReactNode;
   noOfLine?: number;
-  //   maps?: (item: EntryItemType) => void;
-  //   formData?: EntryItemType[];
+  keyValue?: number;
 }
 
-const EntryDataContainer = ({ children, noOfLine = 4 }: Props) => {
+// interface Props {
+//   noOfLine?: number;
+//   maps?: (item: EntryItemType) => void;
+//   formData?: EntryItemType[];
+// }
+
+const EntryDataContainer = ({
+  noOfLine = 4,
+  children,
+  keyValue = 0,
+}: Props) => {
   return (
-    <Container maxW="750px" shadow="lg" rounded="lg" padding={4}>
-      {children ? (
-        children
-      ) : (
-        <SkeletonText noOfLines={noOfLine} spacing="4" skeletonHeight="2" />
-      )}
+    <Container maxW="650px" shadow="lg" rounded="lg" padding={4} key={keyValue}>
+      {children ? children : <SkeletonText noOfLines={noOfLine} spacing="4" />}
     </Container>
   );
 };

@@ -13,7 +13,7 @@ export interface FirstFormProperities {
 export interface EducationDegreeProps {
   degree: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   instytutionName: string;
   fieldOfStudy: string;
 }
@@ -34,7 +34,7 @@ export interface WorkExpirienceProps {
   company: string;
   city: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   description: string;
 }
 

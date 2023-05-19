@@ -5,7 +5,6 @@ import FormInput from "./FormInput";
 import useFormStore from "../../data/store";
 import NavButton from "../navigation/NavButton";
 import { useNavigate } from "react-router-dom";
-
 import { Box } from "@chakra-ui/react";
 import FormContainer from "./FormContainer";
 
@@ -45,7 +44,7 @@ const FirstForm = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} activeForm={0}>
       <div className="row">
         <FormInput
           inputType="name"

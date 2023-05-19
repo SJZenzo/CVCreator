@@ -1,4 +1,4 @@
-import { HStack, List, ListItem } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import useFormStore from "../../data/store";
 import NavButton from "../navigation/NavButton";
 import EducationPopup from "./EducationPopup";
@@ -34,37 +34,29 @@ const SecondForm = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} activeForm={1}>
       {secondFormData.educationDegree ? (
-        <List>
-          {secondFormData.educationDegree.map((degree, index) => (
-            <EntryDataContainer>
-              <ListItem key={index}>
-                <p>{degree.degree}</p>
-                <p>
-                  {degree.startDate} - {degree.endDate}
-                </p>
-                <p>{degree.instytutionName}</p>
-                <p>{degree.fieldOfStudy}</p>
-              </ListItem>
-            </EntryDataContainer>
-          ))}
-        </List>
+        secondFormData.educationDegree.map((degree, index) => (
+          <EntryDataContainer key={index}>
+            <p>{degree.degree}</p>
+            <p>
+              {degree.startDate} - {degree.endDate ? degree.endDate : "obecnie"}
+            </p>
+            <p>{degree.instytutionName}</p>
+            <p>{degree.fieldOfStudy}</p>
+          </EntryDataContainer>
+        ))
       ) : (
         <EntryDataContainer />
       )}
 
       <EducationPopup />
       {secondFormData.languages ? (
-        <List>
-          {secondFormData.languages.map((lang, index) => (
-            <EntryDataContainer>
-              <ListItem key={index}>
-                {lang.language}: {lang.level}
-              </ListItem>
-            </EntryDataContainer>
-          ))}
-        </List>
+        secondFormData.languages.map((lang, index) => (
+          <EntryDataContainer key={index}>
+            {lang.language}: {lang.level}
+          </EntryDataContainer>
+        ))
       ) : (
         <EntryDataContainer noOfLine={1} />
       )}

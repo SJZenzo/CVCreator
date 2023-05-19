@@ -9,7 +9,7 @@ import { zString } from "./FirstForm";
 const shema = z.object({
   degree: zString("Wykształcenie"),
   startDate: zString("Wprowadzenie daty"),
-  endDate: zString("Wprowadzenie daty"),
+  endDate: z.string().optional(),
   instytutionName: zString("Nazwa firmy"),
   fieldOfStudy: zString("Kierunek studiów"),
 });
@@ -27,7 +27,6 @@ const EducationPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data.startDate);
     if (secondFormData.educationDegree) {
       saveSecondForm({
         ...secondFormData,
