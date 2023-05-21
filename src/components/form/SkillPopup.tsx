@@ -12,7 +12,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const SkillPopup = () => {
-  const { thirdFormData, saveThirdForm } = useFormStore();
+  const { saveSkills } = useFormStore();
 
   const {
     register,
@@ -22,17 +22,8 @@ const SkillPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (thirdFormData.skills) {
-      saveThirdForm({
-        ...thirdFormData,
-        skills: [...thirdFormData.skills, { ...data, id: Date.now() }],
-      });
-    } else {
-      saveThirdForm({
-        ...thirdFormData,
-        skills: [{ ...data, id: Date.now() }],
-      });
-    }
+    saveSkills({ ...data, id: Date.now() });
+
     reset();
   };
 

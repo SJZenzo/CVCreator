@@ -15,7 +15,7 @@ const EntryDataContainer = ({
   onDelete,
 }: Props) => {
   return (
-    <Container maxW="650px" shadow="lg" rounded="lg" padding={4} key={keyValue}>
+    <Container maxW="650px" shadow="lg" rounded="lg" py={1} key={keyValue}>
       {children ? (
         <>
           <Box
@@ -29,7 +29,7 @@ const EntryDataContainer = ({
           {children}
         </>
       ) : (
-        <SkeletonText noOfLines={noOfLine} spacing="4" />
+        <SkeletonText noOfLines={noOfLine} spacing="8" py={4} mt={8} />
       )}
     </Container>
   );

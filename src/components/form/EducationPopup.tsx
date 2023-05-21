@@ -17,7 +17,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const EducationPopup = () => {
-  const { secondFormData, saveSecondForm } = useFormStore();
+  const { saveEducation } = useFormStore();
 
   const {
     register,
@@ -27,21 +27,7 @@ const EducationPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (secondFormData.educationDegree) {
-      saveSecondForm({
-        ...secondFormData,
-        educationDegree: [
-          ...secondFormData.educationDegree,
-          { ...data, id: Date.now() },
-        ],
-      });
-    } else {
-      saveSecondForm({
-        ...secondFormData,
-        educationDegree: [{ ...data, id: Date.now() }],
-      });
-    }
-
+    saveEducation({ ...data, id: Date.now() });
     reset();
   };
 

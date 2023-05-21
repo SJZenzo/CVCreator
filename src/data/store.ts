@@ -26,9 +26,9 @@ export interface LanguageProps {
 }
 
 export interface SecondFormProperities {
-  educationDegree: EducationDegreeProps[] | null;
-  languages: LanguageProps[] | null;
-  profile: string | null;
+  educationDegree: EducationDegreeProps[];
+  languages: LanguageProps[];
+  profile: string | undefined;
 }
 
 export interface WorkExpirienceProps {
@@ -53,52 +53,133 @@ export interface SkillsProps {
 }
 
 export interface ThirdFormProperities {
-  workExpirience: WorkExpirienceProps[] | null;
-  certificates: CertificatesProps[] | null;
-  skills: SkillsProps[] | null;
+  workExpirience: WorkExpirienceProps[];
+  certificates: CertificatesProps[];
+  skills: SkillsProps[];
 }
 
 interface FormStore {
-  firstFormData: FirstFormProperities | null;
+  firstFormData: FirstFormProperities | undefined;
   secondFormData: SecondFormProperities;
   thirdFormData: ThirdFormProperities;
   saveFirstForm: (formData: FirstFormProperities) => void;
-  saveSecondForm: (formData: SecondFormProperities) => void;
-  saveThirdForm: (formData: ThirdFormProperities) => void;
-  EducationDegreeProps: (id: number) => void;
-  deleteLanguageProps: (id: number) => void;
-  deleteWorkExpirience: (id: number) => void;
-  deleteCertificatesProps: (id: number) => void;
-  deleteSkillsProps: (id: number) => void;
+  saveSecondFormProfile: (formData: string) => void;
+
+  saveEducation: (popupData: EducationDegreeProps) => void;
+  saveLanguage: (popupData: LanguageProps) => void;
+  saveWorkExp: (popupData: WorkExpirienceProps) => void;
+  saveCertificates: (popupData: CertificatesProps) => void;
+  saveSkills: (popupData: SkillsProps) => void;
+
+  deleteEducation: (id: number) => void;
+  deleteLanguage: (id: number) => void;
+  deleteWorkExp: (id: number) => void;
+  deleteCertificates: (id: number) => void;
+  deleteSkills: (id: number) => void;
 }
 
 const useFormStore = create<FormStore>((set) => ({
-  firstFormData: null,
-  secondFormData: { educationDegree: null, languages: null, profile: null },
-  thirdFormData: { workExpirience: null, certificates: null, skills: null },
+  firstFormData: undefined,
+  secondFormData: {
+    educationDegree: [],
+    languages: [],
+    profile: undefined,
+  },
+  thirdFormData: {
+    workExpirience: [],
+    certificates: [],
+    skills: [],
+  },
   saveFirstForm: (formData) => set(() => ({ firstFormData: formData })),
-  saveSecondForm: (formData) => set(() => ({ secondFormData: formData })),
-  saveThirdForm: (formData) => set(() => ({ thirdFormData: formData })),
-  EducationDegreeProps: (id) =>
-    set(() => {
-      secondFormData;
-    }),
-  deleteLanguageProps: (id) =>
-    set(() => ({
-      secondFormData: 
+  saveSecondFormProfile: (formData) =>
+    set((state) => ({
+      secondFormData: { ...state.secondFormData, profile: formData },
     })),
-  deleteWorkExpirience: (id) =>
-    set(() => {
-      secondFormData;
-    }),
-  deleteCertificatesProps: (id) =>
-    set(() => {
-      secondFormData;
-    }),
-  deleteSkillsProps: (id) =>
-    set(() => {
-      secondFormData;
-    }),
+
+  saveEducation: (popupData) =>
+    set((state) => ({
+      secondFormData: {
+        ...state.secondFormData,
+        educationDegree: [...state.secondFormData.educationDegree, popupData],
+      },
+    })),
+
+  saveLanguage: (popupData) =>
+    set((state) => ({
+      secondFormData: {
+        ...state.secondFormData,
+        languages: [...state.secondFormData.languages, popupData],
+      },
+    })),
+
+  saveWorkExp: (popupData) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        workExpirience: [...state.thirdFormData.workExpirience, popupData],
+      },
+    })),
+
+  saveCertificates: (popupData) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        certificates: [...state.thirdFormData.certificates, popupData],
+      },
+    })),
+
+  saveSkills: (popupData) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        skills: [...state.thirdFormData.skills, popupData],
+      },
+    })),
+
+  deleteEducation: (id) =>
+    set((state) => ({
+      secondFormData: {
+        ...state.secondFormData,
+        educationDegree: state.secondFormData.educationDegree.filter(
+          (item) => item.id !== id
+        ),
+      },
+    })),
+
+  deleteLanguage: (id) =>
+    set((state) => ({
+      secondFormData: {
+        ...state.secondFormData,
+        languages: state.secondFormData.languages.filter(
+          (item) => item.id !== id
+        ),
+      },
+    })),
+  deleteWorkExp: (id) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        workExpirience: state.thirdFormData.workExpirience.filter(
+          (item) => item.id !== id
+        ),
+      },
+    })),
+  deleteCertificates: (id) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        certificates: state.thirdFormData.certificates.filter(
+          (item) => item.id !== id
+        ),
+      },
+    })),
+  deleteSkills: (id) =>
+    set((state) => ({
+      thirdFormData: {
+        ...state.thirdFormData,
+        skills: state.thirdFormData.skills.filter((item) => item.id !== id),
+      },
+    })),
 }));
 
 export default useFormStore;

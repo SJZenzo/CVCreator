@@ -15,7 +15,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const LanguagesPopup = () => {
-  const { secondFormData, saveSecondForm } = useFormStore();
+  const { saveLanguage } = useFormStore();
 
   const languageLevels = [
     "",
@@ -35,17 +35,7 @@ const LanguagesPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (secondFormData.languages) {
-      saveSecondForm({
-        ...secondFormData,
-        languages: [...secondFormData.languages, { ...data, id: Date.now() }],
-      });
-    } else {
-      saveSecondForm({
-        ...secondFormData,
-        languages: [{ ...data, id: Date.now() }],
-      });
-    }
+    saveLanguage({ ...data, id: Date.now() });
 
     reset();
   };

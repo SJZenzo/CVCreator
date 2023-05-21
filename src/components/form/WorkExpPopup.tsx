@@ -18,7 +18,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const WorkExpPopup = () => {
-  const { thirdFormData, saveThirdForm } = useFormStore();
+  const { saveWorkExp } = useFormStore();
 
   const {
     register,
@@ -28,20 +28,7 @@ const WorkExpPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (thirdFormData.workExpirience) {
-      saveThirdForm({
-        ...thirdFormData,
-        workExpirience: [
-          ...thirdFormData.workExpirience,
-          { ...data, id: Date.now() },
-        ],
-      });
-    } else {
-      saveThirdForm({
-        ...thirdFormData,
-        workExpirience: [{ ...data, id: Date.now() }],
-      });
-    }
+    saveWorkExp({ ...data, id: Date.now() });
 
     reset();
   };

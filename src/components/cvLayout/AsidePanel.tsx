@@ -10,8 +10,8 @@ interface AsideProps {
   email: string;
   linkedinProfile: string;
   city: string;
-  education: EducationDegreeProps[] | null;
-  languages: LanguageProps[] | null;
+  education: EducationDegreeProps[];
+  languages: LanguageProps[];
 }
 
 interface Props {
@@ -23,7 +23,7 @@ const AsidePanel = ({ inputData }: Props) => {
     <>
       <Box p={3} marginX={5}>
         <Heading fontSize={20} marginBottom={2}>
-          CONTACT
+          KONTAKT
         </Heading>
         <HStack marginBottom={1}>
           <BsPhone />
@@ -42,11 +42,11 @@ const AsidePanel = ({ inputData }: Props) => {
           <Text>{inputData.city}</Text>
         </HStack>
 
-        {inputData.education ? (
+        {inputData.education.length !== 0 ? (
           <>
             <Divider borderColor="black" marginBottom={3}></Divider>
             <Heading fontSize={20} marginBottom={2}>
-              EDUCATION
+              EDUKACJA
             </Heading>
 
             {inputData.education.map((level, index) => (
@@ -63,11 +63,11 @@ const AsidePanel = ({ inputData }: Props) => {
           </>
         ) : null}
 
-        {inputData.languages ? (
+        {inputData.languages.length !== 0 ? (
           <>
             <Divider borderColor="black" marginBottom={3}></Divider>
             <Heading fontSize={20} marginBottom={2}>
-              LANGUAGES
+              JĘZYKI
             </Heading>
             {inputData.languages.map((language, index) => (
               <HStack key={index}>

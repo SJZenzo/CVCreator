@@ -14,7 +14,7 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const CertificatesPopup = () => {
-  const { thirdFormData, saveThirdForm } = useFormStore();
+  const { saveCertificates } = useFormStore();
 
   const {
     register,
@@ -24,20 +24,8 @@ const CertificatesPopup = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (thirdFormData.certificates) {
-      saveThirdForm({
-        ...thirdFormData,
-        certificates: [
-          ...thirdFormData.certificates,
-          { ...data, id: Date.now() },
-        ],
-      });
-    } else {
-      saveThirdForm({
-        ...thirdFormData,
-        certificates: [{ ...data, id: Date.now() }],
-      });
-    }
+    saveCertificates({ ...data, id: Date.now() });
+
     reset();
   };
 

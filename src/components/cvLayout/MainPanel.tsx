@@ -11,10 +11,10 @@ import {
 import { CertificatesProps, WorkExpirienceProps } from "../../data/store";
 
 interface MainProps {
-  profile: string | null;
-  workExpirience: WorkExpirienceProps[] | null;
-  certificates: CertificatesProps[] | null;
-  skills: string[] | null;
+  profile: string;
+  workExpirience: WorkExpirienceProps[];
+  certificates: CertificatesProps[];
+  skills: string[];
 }
 
 interface Props {
@@ -25,15 +25,15 @@ const MainPanel = ({ inputData }: Props) => {
   return (
     <Box p={3} marginX={5}>
       <Heading fontSize={20} marginBottom={2}>
-        PROFILE
+        PROFIL
       </Heading>
       <Text marginBottom={3}>{inputData.profile}</Text>
 
-      {inputData.workExpirience ? (
+      {inputData.workExpirience.length !== 0 ? (
         <>
           <Divider borderColor="black" marginBottom={3} />
           <Heading fontSize={20} marginBottom={5}>
-            WORK EXPIRIENCE
+            DOŚWIADCZENIE ZAWODOWE
           </Heading>
           <UnorderedList>
             {inputData.workExpirience.map((work, index) => (
@@ -54,11 +54,11 @@ const MainPanel = ({ inputData }: Props) => {
         </>
       ) : null}
 
-      {inputData.certificates ? (
+      {inputData.certificates.length !== 0 ? (
         <>
           <Divider borderColor="black" marginBottom={3} />
           <Heading fontSize={20} marginBottom={2}>
-            CERTIFICATES
+            CERTYFIKATY
           </Heading>
           <UnorderedList marginBottom={3}>
             {inputData.certificates.map((certificate, index) => (
@@ -71,11 +71,11 @@ const MainPanel = ({ inputData }: Props) => {
         </>
       ) : null}
 
-      {inputData.skills ? (
+      {inputData.skills.length !== 0 ? (
         <>
           <Divider borderColor="black" marginBottom={3} />
           <Heading fontSize={20} marginBottom={2}>
-            SKILLS
+            UMIEJĘTNOŚCI
           </Heading>
           <UnorderedList marginBottom={3}>
             {inputData.skills.map((skill) => (

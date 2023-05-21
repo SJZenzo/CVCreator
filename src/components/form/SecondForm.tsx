@@ -19,7 +19,12 @@ const shema = z.object({
 type FormData = z.infer<typeof shema>;
 
 const SecondForm = () => {
-  const { secondFormData, saveSecondForm } = useFormStore();
+  const {
+    secondFormData,
+    saveSecondFormProfile,
+    deleteEducation,
+    deleteLanguage,
+  } = useFormStore();
   const navigate = useNavigate();
 
   const {
@@ -29,15 +34,18 @@ const SecondForm = () => {
   } = useForm<FormData>({ resolver: zodResolver(shema) });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    saveSecondForm({ ...secondFormData, profile: data.profile });
+    saveSecondFormProfile(data.profile);
     navigate("/third");
   };
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} activeForm={1}>
-      {secondFormData.educationDegree ? (
+      {secondFormData.educationDegree.length !== 0 ? (
         secondFormData.educationDegree.map((degree, index) => (
-          <EntryDataContainer key={index}>
+          <EntryDataContainer
+            key={index}
+            onDelete={() => deleteEducation(degree.id)}
+          >
             <p>{degree.degree}</p>
             <p>
               {degree.startDate} - {degree.endDate ? degree.endDate : "obecnie"}
@@ -51,15 +59,11 @@ const SecondForm = () => {
       )}
 
       <EducationPopup />
-      {secondFormData.languages ? (
+      {secondFormData.languages.length !== 0 ? (
         secondFormData.languages.map((lang, index) => (
           <EntryDataContainer
             key={index}
-            // onDelete={() =>
-            //   saveSecondForm(
-            //   { ...secondFormData, secondFormData.languages: {secondFormData.languages?.filter((item) => item.id !== lang.id},)}
-            //   )
-            // } TODO
+            onDelete={() => deleteLanguage(lang.id)}
           >
             {lang.language}: {lang.level}
           </EntryDataContainer>
