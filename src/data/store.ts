@@ -11,6 +11,7 @@ export interface FirstFormProperities {
 }
 
 export interface EducationDegreeProps {
+  id: number;
   degree: string;
   startDate: string;
   endDate?: string;
@@ -19,6 +20,7 @@ export interface EducationDegreeProps {
 }
 
 export interface LanguageProps {
+  id: number;
   language: string;
   level: string;
 }
@@ -30,6 +32,7 @@ export interface SecondFormProperities {
 }
 
 export interface WorkExpirienceProps {
+  id: number;
   jobPosition: string;
   company: string;
   city: string;
@@ -39,14 +42,20 @@ export interface WorkExpirienceProps {
 }
 
 export interface CertificatesProps {
+  id: number;
   description: string;
   organization: string;
+}
+
+export interface SkillsProps {
+  id: number;
+  skill: string;
 }
 
 export interface ThirdFormProperities {
   workExpirience: WorkExpirienceProps[] | null;
   certificates: CertificatesProps[] | null;
-  skills: string[] | null;
+  skills: SkillsProps[] | null;
 }
 
 interface FormStore {
@@ -56,6 +65,11 @@ interface FormStore {
   saveFirstForm: (formData: FirstFormProperities) => void;
   saveSecondForm: (formData: SecondFormProperities) => void;
   saveThirdForm: (formData: ThirdFormProperities) => void;
+  EducationDegreeProps: (id: number) => void;
+  deleteLanguageProps: (id: number) => void;
+  deleteWorkExpirience: (id: number) => void;
+  deleteCertificatesProps: (id: number) => void;
+  deleteSkillsProps: (id: number) => void;
 }
 
 const useFormStore = create<FormStore>((set) => ({
@@ -65,6 +79,26 @@ const useFormStore = create<FormStore>((set) => ({
   saveFirstForm: (formData) => set(() => ({ firstFormData: formData })),
   saveSecondForm: (formData) => set(() => ({ secondFormData: formData })),
   saveThirdForm: (formData) => set(() => ({ thirdFormData: formData })),
+  EducationDegreeProps: (id) =>
+    set(() => {
+      secondFormData;
+    }),
+  deleteLanguageProps: (id) =>
+    set(() => ({
+      secondFormData: 
+    })),
+  deleteWorkExpirience: (id) =>
+    set(() => {
+      secondFormData;
+    }),
+  deleteCertificatesProps: (id) =>
+    set(() => {
+      secondFormData;
+    }),
+  deleteSkillsProps: (id) =>
+    set(() => {
+      secondFormData;
+    }),
 }));
 
 export default useFormStore;
