@@ -38,10 +38,13 @@ const LanguagesPopup = () => {
     if (secondFormData.languages) {
       saveSecondForm({
         ...secondFormData,
-        languages: [...secondFormData.languages, data],
+        languages: [...secondFormData.languages, { ...data, id: Date.now() }],
       });
     } else {
-      saveSecondForm({ ...secondFormData, languages: [data] });
+      saveSecondForm({
+        ...secondFormData,
+        languages: [{ ...data, id: Date.now() }],
+      });
     }
 
     reset();

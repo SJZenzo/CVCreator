@@ -25,10 +25,13 @@ const SkillPopup = () => {
     if (thirdFormData.skills) {
       saveThirdForm({
         ...thirdFormData,
-        skills: [...thirdFormData.skills, data.skill],
+        skills: [...thirdFormData.skills, { ...data, id: Date.now() }],
       });
     } else {
-      saveThirdForm({ ...thirdFormData, skills: [data.skill] });
+      saveThirdForm({
+        ...thirdFormData,
+        skills: [{ ...data, id: Date.now() }],
+      });
     }
     reset();
   };

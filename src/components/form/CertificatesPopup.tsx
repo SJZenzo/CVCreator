@@ -27,10 +27,16 @@ const CertificatesPopup = () => {
     if (thirdFormData.certificates) {
       saveThirdForm({
         ...thirdFormData,
-        certificates: [...thirdFormData.certificates, data],
+        certificates: [
+          ...thirdFormData.certificates,
+          { ...data, id: Date.now() },
+        ],
       });
     } else {
-      saveThirdForm({ ...thirdFormData, certificates: [data] });
+      saveThirdForm({
+        ...thirdFormData,
+        certificates: [{ ...data, id: Date.now() }],
+      });
     }
     reset();
   };

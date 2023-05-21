@@ -53,7 +53,14 @@ const SecondForm = () => {
       <EducationPopup />
       {secondFormData.languages ? (
         secondFormData.languages.map((lang, index) => (
-          <EntryDataContainer key={index}>
+          <EntryDataContainer
+            key={index}
+            // onDelete={() =>
+            //   saveSecondForm(
+            //   { ...secondFormData, secondFormData.languages: {secondFormData.languages?.filter((item) => item.id !== lang.id},)}
+            //   )
+            // } TODO
+          >
             {lang.language}: {lang.level}
           </EntryDataContainer>
         ))

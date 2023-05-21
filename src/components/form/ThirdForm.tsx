@@ -9,7 +9,7 @@ import FormContainer from "./FormContainer";
 import EntryDataContainer from "./EntryDataContainer";
 
 const ThirdForm = () => {
-  const { thirdFormData } = useFormStore();
+  const { thirdFormData, saveThirdForm } = useFormStore();
   const navigate = useNavigate();
 
   return (
@@ -44,7 +44,7 @@ const ThirdForm = () => {
       {thirdFormData.skills ? (
         thirdFormData.skills.map((skill, index) => (
           <EntryDataContainer key={index}>
-            <p>{skill}</p>
+            <p>{skill.skill}</p>
           </EntryDataContainer>
         ))
       ) : (

@@ -30,10 +30,16 @@ const EducationPopup = () => {
     if (secondFormData.educationDegree) {
       saveSecondForm({
         ...secondFormData,
-        educationDegree: [...secondFormData.educationDegree, data],
+        educationDegree: [
+          ...secondFormData.educationDegree,
+          { ...data, id: Date.now() },
+        ],
       });
     } else {
-      saveSecondForm({ ...secondFormData, educationDegree: [data] });
+      saveSecondForm({
+        ...secondFormData,
+        educationDegree: [{ ...data, id: Date.now() }],
+      });
     }
 
     reset();

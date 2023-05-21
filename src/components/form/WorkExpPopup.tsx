@@ -31,10 +31,16 @@ const WorkExpPopup = () => {
     if (thirdFormData.workExpirience) {
       saveThirdForm({
         ...thirdFormData,
-        workExpirience: [...thirdFormData.workExpirience, data],
+        workExpirience: [
+          ...thirdFormData.workExpirience,
+          { ...data, id: Date.now() },
+        ],
       });
     } else {
-      saveThirdForm({ ...thirdFormData, workExpirience: [data] });
+      saveThirdForm({
+        ...thirdFormData,
+        workExpirience: [{ ...data, id: Date.now() }],
+      });
     }
 
     reset();

@@ -1,28 +1,36 @@
-import { Container, SkeletonText } from "@chakra-ui/react";
+import { Box, CloseButton, Container, SkeletonText } from "@chakra-ui/react";
 import { ReactNode } from "react";
-
-// type EntryItemType = LanguageProps | EducationDegreeProps;
 
 interface Props {
   children?: ReactNode;
   noOfLine?: number;
   keyValue?: number;
+  onDelete?: () => void;
 }
-
-// interface Props {
-//   noOfLine?: number;
-//   maps?: (item: EntryItemType) => void;
-//   formData?: EntryItemType[];
-// }
 
 const EntryDataContainer = ({
   noOfLine = 4,
   children,
   keyValue = 0,
+  onDelete,
 }: Props) => {
   return (
     <Container maxW="650px" shadow="lg" rounded="lg" padding={4} key={keyValue}>
-      {children ? children : <SkeletonText noOfLines={noOfLine} spacing="4" />}
+      {children ? (
+        <>
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <CloseButton onClick={onDelete} />
+          </Box>
+          {children}
+        </>
+      ) : (
+        <SkeletonText noOfLines={noOfLine} spacing="4" />
+      )}
     </Container>
   );
 };
