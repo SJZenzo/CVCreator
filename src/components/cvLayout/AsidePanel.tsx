@@ -1,9 +1,10 @@
-import { Box, Divider, HStack, Heading, Text } from "@chakra-ui/react";
+import { Box, HStack, Heading, Text } from "@chakra-ui/react";
 import { BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiFillLinkedin } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
 import { EducationDegreeProps, LanguageProps } from "../../data/store";
+import ListContainer from "./ListContainer";
 
 interface AsideProps {
   phoneNumber: number;
@@ -43,12 +44,7 @@ const AsidePanel = ({ inputData }: Props) => {
         </HStack>
 
         {inputData.education.length !== 0 ? (
-          <>
-            <Divider borderColor="black" marginBottom={3}></Divider>
-            <Heading fontSize={20} marginBottom={2}>
-              EDUKACJA
-            </Heading>
-
+          <ListContainer headingTitle="EDUKACJA">
             {inputData.education.map((level, index) => (
               <Box key={index}>
                 <Text>
@@ -60,15 +56,11 @@ const AsidePanel = ({ inputData }: Props) => {
                 <Text marginBottom={3}>{level.degree}</Text>
               </Box>
             ))}
-          </>
+          </ListContainer>
         ) : null}
 
         {inputData.languages.length !== 0 ? (
-          <>
-            <Divider borderColor="black" marginBottom={3}></Divider>
-            <Heading fontSize={20} marginBottom={2}>
-              JĘZYKI
-            </Heading>
+          <ListContainer headingTitle="JĘZYKI">
             {inputData.languages.map((language, index) => (
               <HStack key={index}>
                 <Text>
@@ -76,7 +68,7 @@ const AsidePanel = ({ inputData }: Props) => {
                 </Text>
               </HStack>
             ))}
-          </>
+          </ListContainer>
         ) : null}
       </Box>
     </>

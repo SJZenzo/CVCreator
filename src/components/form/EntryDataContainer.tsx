@@ -26,7 +26,7 @@ const EntryDataContainer = ({
           >
             <CloseButton onClick={onDelete} />
           </Box>
-          {children}
+          <Box>{children}</Box>
         </>
       ) : (
         <SkeletonText noOfLines={noOfLine} spacing="8" py={4} mt={8} />

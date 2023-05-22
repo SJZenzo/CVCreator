@@ -10,6 +10,7 @@ const cvData = {
 
   education: [
     {
+      id: 1,
       degree: "inżynier",
       startDate: "2019",
       endDate: "2023",
@@ -17,6 +18,7 @@ const cvData = {
       fieldOfStudy: "Automatyka i robotyka",
     },
     {
+      id: 2,
       degree: "średnie",
       startDate: "2015",
       endDate: "2019",
@@ -26,14 +28,15 @@ const cvData = {
     },
   ],
   languages: [
-    { language: "Polski", level: "ojczysty" },
-    { language: "Angielski", level: "komunikatywny" },
-    { language: "Niemiecki", level: "podstawowy" },
+    { id: 1, language: "Polski", level: "ojczysty" },
+    { id: 2, language: "Angielski", level: "komunikatywny" },
+    { id: 3, language: "Niemiecki", level: "podstawowy" },
   ],
   profile:
     "some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text ",
   workExpirience: [
     {
+      id: 1,
       jobPosition: "Programista-serwistant",
       company: "Carboautomatyka",
       city: "Tychy",
@@ -42,6 +45,7 @@ const cvData = {
       description: "Progaramowanie PLC",
     },
     {
+      id: 2,
       jobPosition: "Specjalista ds. utrzymania ruchu i infrastruktury",
       company: "Autoland",
       city: "Pawłowice",
@@ -52,17 +56,24 @@ const cvData = {
   ],
   certificates: [
     {
+      id: 1,
       description:
         "Programowanie SIEMENS SIMATIC S7-1200 w TIA PORTAL - poziom 1",
       organization: "EMT-SYSTEMS",
     },
     {
+      id: 2,
       description:
         "Programowanie SIEMENS SIMATIC S7-1200 w TIA PORTAL - poziom 2",
       organization: "EMT-SYSTEMS",
     },
   ],
-  skills: ["skill 1", "skill 2", "skill 3", "skill 4"],
+  skills: [
+    { id: 1, skill: "Umiejętność pracy w zespole" },
+    { id: 2, skill: "Zanjomość gita i gitHuba" },
+    { id: 3, skill: "3" },
+    { id: 4, skill: "4" },
+  ],
 };
 
 export default cvData;

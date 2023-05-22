@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import NavButton from "./NavButton";
+import NavButton from "../navigation/NavButton";
 
 interface Props {
   containerId: string;

@@ -8,11 +8,11 @@ import { zString } from "./FirstForm";
 
 const shema = z.object({
   jobPosition: zString("Stanowisko"),
-  company: zString("Nazwa firmy"),
+  company: zString("Wprowadzenie nazwy firmy"),
   city: zString("Miasto"),
   startDate: zString("Wprowadzenie daty"),
   endDate: z.string().optional(),
-  description: zString("Opis"),
+  description: zString("Wprowadzenie opisu"),
 });
 
 type FormData = z.infer<typeof shema>;
@@ -36,7 +36,7 @@ const WorkExpPopup = () => {
   return (
     <FormDialogContainer
       onSubmit={handleSubmit(onSubmit)}
-      dialogHeader="Dodawanie doświadzcenia"
+      dialogHeader="Dodawanie doświadczenia"
       isValid={isValid}
     >
       <FormInput

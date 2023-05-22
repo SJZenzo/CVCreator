@@ -1,7 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import Header from "../cvLayout/Header";
-import AsidePanel from "../cvLayout/AsidePanel";
-import MainPanel from "../cvLayout/MainPanel";
+import HeaderPanel from "./HeaderPanel";
+import AsidePanel from "./AsidePanel";
+import MainPanel from "./MainPanel";
 import formDataConverter, { CvDataType } from "../../data/formDataConverter";
 
 interface Props {
@@ -26,7 +26,7 @@ const CreatedCV = ({ inputData }: Props) => {
           }}
         >
           <GridItem area="header">
-            <Header inputData={dataToComp.headerObj} />
+            <HeaderPanel inputData={dataToComp.headerObj} />
           </GridItem>
           <GridItem area="aside">
             <AsidePanel inputData={dataToComp.asideObs} />

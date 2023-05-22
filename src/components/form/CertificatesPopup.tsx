@@ -7,8 +7,8 @@ import FormDialogContainer from "./FormDialogContainer";
 import { zString } from "./FirstForm";
 
 const shema = z.object({
-  description: zString("Opis kursu"),
-  organization: zString("Nazwa organizatora"),
+  description: zString("Wprowadzenie opisu kursu"),
+  organization: zString("Wprowadzenie organizatora"),
 });
 
 type FormData = z.infer<typeof shema>;

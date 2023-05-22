@@ -8,8 +8,8 @@ import { zString } from "./FirstForm";
 import { Select } from "@chakra-ui/react";
 
 const shema = z.object({
-  language: zString("Język"),
-  level: z.string().min(3, { message: "Poziom wymagany" }),
+  language: zString("Wprowadzenie języka"),
+  level: zString("Wybranie poziomu"),
 });
 
 type FormData = z.infer<typeof shema>;

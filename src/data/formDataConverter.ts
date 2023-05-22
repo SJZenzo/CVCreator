@@ -4,6 +4,7 @@ import {
   FirstFormProperities,
   LanguageProps,
   SecondFormProperities,
+  SkillsProps,
   ThirdFormProperities,
   WorkExpirienceProps,
 } from "./store";
@@ -26,10 +27,10 @@ interface ExampleDataType {
   city: string;
   education: EducationDegreeProps[];
   languages: LanguageProps[];
-  profile: string;
+  profile: string | undefined;
   workExpirience: WorkExpirienceProps[];
   certificates: CertificatesProps[];
-  skills: string[];
+  skills: SkillsProps[];
 }
 
 export type CvDataType = ExampleDataType | UserCvProps;

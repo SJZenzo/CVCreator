@@ -10,7 +10,7 @@ interface Props {
   inputData: HeaderProps;
 }
 
-const Header = ({ inputData }: Props) => {
+const HeaderPanel = ({ inputData }: Props) => {
   return (
     <>
       <Box p={3} textAlign="center">
@@ -18,7 +18,7 @@ const Header = ({ inputData }: Props) => {
           {inputData.name} {inputData.surname}
         </Heading>
         <Text fontSize="xl">{inputData.position}</Text>
-        <Stack padding="10px">
+        <Stack padding="2px">
           <Divider borderColor="black"></Divider>
         </Stack>
       </Box>
@@ -26,4 +26,4 @@ const Header = ({ inputData }: Props) => {
   );
 };
 
-export default Header;
+export default HeaderPanel;

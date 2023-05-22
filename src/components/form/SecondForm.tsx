@@ -65,7 +65,9 @@ const SecondForm = () => {
             key={index}
             onDelete={() => deleteLanguage(lang.id)}
           >
-            {lang.language}: {lang.level}
+            <p>
+              {lang.language}: {lang.level}
+            </p>
           </EntryDataContainer>
         ))
       ) : (

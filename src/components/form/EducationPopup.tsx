@@ -10,8 +10,8 @@ const shema = z.object({
   degree: zString("Wykształcenie"),
   startDate: zString("Wprowadzenie daty"),
   endDate: z.string().optional(),
-  instytutionName: zString("Nazwa firmy"),
-  fieldOfStudy: zString("Kierunek studiów"),
+  instytutionName: zString("Wprowadzenie firmy"),
+  fieldOfStudy: zString("Wprowadzenie kieruneku studiów"),
 });
 
 type FormData = z.infer<typeof shema>;
