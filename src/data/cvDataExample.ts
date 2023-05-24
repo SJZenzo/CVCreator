@@ -6,7 +6,7 @@ const cvData = {
   phoneNumber: 536357781,
   email: "slawek.4363@gmail.com",
   linkedinProfile: "https://www.linkedin.com/in/sławomir-woryna-34a1791ba/",
-  city: "Bielsko-Biała",
+  city: "Tychy",
 
   education: [
     {
@@ -33,7 +33,7 @@ const cvData = {
     { id: 3, language: "Niemiecki", level: "podstawowy" },
   ],
   profile:
-    "some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text some long text ",
+    "Jestem młodym i ambitnym człowiekiem, który podąża za swoimi zainteresowaniami i szuka swojego miejsca na rynku pracy.",
   workExpirience: [
     {
       id: 1,
@@ -57,9 +57,8 @@ const cvData = {
   certificates: [
     {
       id: 1,
-      description:
-        "Programowanie SIEMENS SIMATIC S7-1200 w TIA PORTAL - poziom 1",
-      organization: "EMT-SYSTEMS",
+      description: "React 18 for Beginners",
+      organization: "Code with Mosh",
     },
     {
       id: 2,
@@ -70,9 +69,9 @@ const cvData = {
   ],
   skills: [
     { id: 1, skill: "Umiejętność pracy w zespole" },
-    { id: 2, skill: "Zanjomość gita i gitHuba" },
-    { id: 3, skill: "3" },
-    { id: 4, skill: "4" },
+    { id: 2, skill: "Znajomość gita i gitHuba" },
+    { id: 3, skill: "Podstawy znajomości środowiska node.js" },
+    { id: 4, skill: "Podstawowa znajomość android studio" },
   ],
 };
 
